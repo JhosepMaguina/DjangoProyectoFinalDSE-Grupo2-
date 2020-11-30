@@ -1,0 +1,64 @@
+<body>
+
+  {% extends "base.html" %}
+
+  {% block content %}
+
+
+  <div class="container">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="https://previews.dropbox.com/p/thumb/AA_T-_u6Pt516gbN1kA-j9D0Nz739NfzFIJwjqhgEKCLmiDWJKP9uDYGEqJfTltRMEXM7noCP-bgYPCq6yal5wxRA2_DqIH7n5qQYrRZd0OAO_EjszjaGXAO-sHlZDOnBOtBXNV_riZaSpvFg88w6-bx5kBBTd9t8az46gV_Xz6f9WeALQ9wzNVQts2Mi-IMnEiQWWTPi_IkETSuw6PQQr40r9Hctde0kSIKbgsB9h1OTZ378w-uWpuGuHUNzjspbeGeHM11Jjh1a40l53Y5md9gutz9CJKi8vWeTXMwbw1jhSlMUIh6ids1tME3iMgl9CFX7D9VpUBfcTeWdzWYVSvkvvShbSKDWX6BmMCLDGtkDA/p.jpeg?fv_content=true&size_mode=5" alt="linio" style="width:100%;">
+        </div>
+        <div class="item">
+          <img src="https://previews.dropbox.com/p/thumb/AA9Y7_YSusvRoBlO2VvZGZIhx8r-GGkTVjrpvavPJlBrJfzg_NUs4FUPw3PqpEW4zKvfoCXjS6svbYRoevz3REapjrgMcLlUkT59Bc-PYuRi2Ou-i1SqLhsM5umsVX6M-4IQJLQaOj8FH3L8JGlUGIoPSPIo36a3esCwSreZokjzwlhUQ-sVGB0V1i6weuy-EI_AZkjXvDufmoO5bKTdM8Pbs3n46GSgYHM93SHRvzmLAADt5jKA77bwdvWQq7mTrKgG3gqIT5TK0UJiDMj_l2Gxb17IopK2aeolnqCIyS7M6HUjP_HoKS2kGR9TYaZvmS2Si9TKDcLYJ92MfJewqLRxL2T3-f0yTf5PfmQgn3obLw/p.jpeg?fv_content=true&size_mode=5" alt="linio" style="width:100%;">
+        </div>
+        <div class="item">
+          <img src="https://previews.dropbox.com/p/thumb/AA94AYZ5g7OSsVAf7cbG3kJVYUAlEfFqVWLeApwW990dYhiS8RccmAczL26dJmbeoWE_otW322mibtyWsiGjKg7m7hNiM7f34j-yi733ugeM13TRc-ZwuzvWga2iuNJzG1n44hRQBHmvACu7PByx3bkvCrY1aud3eu6uFJf0-DuTu-tH8vpOozWZfmWQ6nXJrA24O7vnI7hX8YIWG5-yLigRF3pH9-LqDCiY0pQV7r4IH7_k_fDVvjuTX8KsjLfl_tPESsvRfvfK0IeryjxACgYbsnOqLONYtXhDh_xtn8JNEtQvF545F5WMm6DUnj0-v8m0u6yErIaoCymkMMGhZgWdQ57tQaIDEDFDynD8gDLpUQ/p.jpeg?fv_content=true&size_mode=5" alt="linio" style="width:100%;">
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="notification {% if message.tags %}is-{{ message.tags }}{% endif %}">
+    <button class="delete"></button>
+    {{ message }}
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <hr>
+  <hr>
+  <h5> Ultimos productos </h5>
+  <ul>
+    {% for producto in latest_products %}
+    <li>
+      <a href="{% url 'product-detail' producto.pk %}">
+        {{ producto.nombre }}
+      </a>
+      - {{ producto.precio }}
+    </li>
+    {% empty %}
+    <li>Aun no hay productos disponibles.</li>
+    {% endfor %}
+  </ul>
+    <hr>
+    {% endblock %}
+  </body>
+</html>

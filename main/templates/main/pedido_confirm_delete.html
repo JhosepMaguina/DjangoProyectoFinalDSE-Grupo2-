@@ -1,0 +1,9 @@
+<form action="{% url 'pedido-destroy' object.pk %}" method="post">
+    {% csrf_token %}
+    <div>
+        <a>
+            Estas seguro que deseas eliminar los productos de este pedido ?
+        </a>
+    </div>
+    <input type="submit" value="Delete" />
+</form>

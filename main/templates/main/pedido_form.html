@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3 class="title"> Checkout </h3>
+    <div class="block">
+        <h5 class="subtitle"> Completa tus datos </h5>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <p>
+              Selecciona tu documento
+          </p>
+          <div>
+                <input type="radio" id="voucher" name="bills" value="voucher">
+                <label for="voucher">Boleta</label><br>
+                <input type="radio" id="invoice" name="bills" value="invoice">
+                <label for="invoice">Factura</label><br>
+            </div>
+            <input type="submit" value="Submit" class="button is-info">
+        </form>
+    </div>
+    <hr>
+{% endblock %}

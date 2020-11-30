@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+
+  .topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
+    <title> LinioExp </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <div class="topnav">
+    <a class="active" href="{% url 'home' %}">Inicio</a>
+    <a href="{% url 'product-list' %}"><i class="fa fa-shopping-bag"></i> Productos </a>
+    <a href="{% url 'pedido-detail' %}"><i class="fa fa-shopping-cart"></i> Carrito </a>
+    <a href="{% url 'logout' %}"><i class="fa fa-fw fa-user"></i> Cerrar Sesion </a>
+  </div>
+  <section class="section">
+    <div class="container">
+        {% if user.is_authenticated %}
+        <h3> Hola Usuario: {{ user.get_username }} </h3>
+        {% else %}
+        <p>
+          <a href="{% url 'login' %}">Inicia Sesion</a> o
+          <a href="{% url 'register' %}">Registrate</a>
+        </p>
+        {% endif %}
+      <h1 class="title is-1"> Linio Express </h1>
+      <hr>
+      <div class="content">
+        <form action="{% url 'product-list' %}" method="get">
+            <input class="input is-rounded" type="text" name="q" placeholder="Busca tu producto...">
+        </form>
+    </div>
+      <!-- <h1> Linio Exp </h1> Título más grande
+      <hr> -->
+      {% block content %}
+      {% endblock %}
+    </div>
+  </section>
+  </body>
+</html>
